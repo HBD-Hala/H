@@ -27,8 +27,9 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { width: 100%; min-height: 100vh; overflow-x: hidden; scroll-behavior: smooth; }
+html { width: 100%; min-height: 100vh; scroll-behavior: smooth; }
 
+/* Fixed overflow issue that breaks position:sticky */
 body {
   font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at 50% 30%, #580407 0%, #3b0204 60%, #1a0102 100%);
@@ -39,6 +40,9 @@ body {
   flex-direction: column;
   align-items: center;
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip; /* Fixes layout horizontal scroll without disabling position:sticky */
 }
 
 .pin-overlay {
@@ -307,17 +311,16 @@ body {
 }
 
 .gallery-scroll-section {
-  width: 100vw;
+  width: 100%;
   position: relative;
-  /* Increased height for extended scroll range & relaxed card browsing */
-  height: 750vh;
+  height: 500vh; /* Full track scroll height to ensure smooth sticky behavior */
 }
 
 .gallery-sticky-pin {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -325,14 +328,13 @@ body {
 }
 
 .filmstrip-hero-container {
-  width: 100vw;
+  width: 100%;
   height: 320px;
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Redesigned CD Disc Wrapper with new requested colors */
 .vinyl-wrapper {
   position: absolute;
   left: -40px;
@@ -347,7 +349,6 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  /* Custom radial gradient using #740003, #DA8292, and #F5D6DC */
   background: radial-gradient(circle at center, 
     #1f0001 0%, 
     #740003 14%, 
@@ -378,7 +379,6 @@ body {
   pointer-events: none;
 }
 
-/* CD Center Label with requested palette */
 .vinyl-label {
   width: 105px;
   height: 105px;
@@ -410,9 +410,8 @@ body {
   margin-top: 3px;
 }
 
-/* Filmstrip Track Container */
 .filmstrip-viewport {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -867,30 +866,36 @@ const vinylDisc = document.getElementById('vinylDisc');
 const filmstripTrack = document.getElementById('filmstripTrack');
 
 function handleScrollDrivenFilmstrip() {
-  if (!gallerySection) return;
+  if (!gallerySection || !filmstripTrack) return;
 
   const rect = gallerySection.getBoundingClientRect();
   const sectionHeight = gallerySection.offsetHeight;
   const windowHeight = window.innerHeight;
 
+  // Total available vertical distance while pinned
   const totalScrollDistance = sectionHeight - windowHeight;
+  if (totalScrollDistance <= 0) return;
+
+  // Distance scrolled into section
   const currentScroll = -rect.top;
 
+  // Normalized progress from 0 to 1
   let progress = currentScroll / totalScrollDistance;
   progress = Math.max(0, Math.min(1, progress));
 
-  // Reduced rotation rate (360 degrees total) for much smoother and slower CD rotation
+  // Smooth rotation for the CD disc
   const rotationDeg = progress * 360;
   vinylDisc.style.transform = `rotate(${rotationDeg}deg)`;
 
-  // Smooth horizontal translation of cards track
+  // Calculate slide distance to reveal every card exactly till the end
   const maxSlide = filmstripTrack.scrollWidth - window.innerWidth + 80;
   const translateX = -(progress * Math.max(0, maxSlide));
   filmstripTrack.style.transform = `translateX(${translateX}px)`;
 }
 
-window.addEventListener('scroll', handleScrollDrivenFilmstrip);
+window.addEventListener('scroll', handleScrollDrivenFilmstrip, { passive: true });
 window.addEventListener('resize', handleScrollDrivenFilmstrip);
+window.addEventListener('load', handleScrollDrivenFilmstrip);
 </script>
 </body>
 </html>
