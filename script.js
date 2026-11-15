@@ -446,47 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* --------------------------------------------------------------------------
-     7. GREETING CARDS CHEER INTERACTION
-     -------------------------------------------------------------------------- */
-  window.toggleCheer = function(btn) {
-    const isCheered = btn.classList.contains('cheered');
-    const countElem = btn.querySelector('.cheer-count');
-    let count = parseInt(countElem.textContent) || 1;
-
-    if (!isCheered) {
-      btn.classList.add('cheered');
-      countElem.textContent = count + 1;
-      createFloatingHeart(btn);
-    } else {
-      btn.classList.remove('cheered');
-      countElem.textContent = Math.max(1, count - 1);
-    }
-  };
-
-  function createFloatingHeart(button) {
-    const heart = document.createElement('span');
-    heart.textContent = '♥';
-    heart.style.position = 'absolute';
-    heart.style.left = '50%';
-    heart.style.top = '0';
-    heart.style.color = '#e11d48';
-    heart.style.fontSize = '20px';
-    heart.style.pointerEvents = 'none';
-    heart.style.transform = 'translate(-50%, 0) scale(0.8)';
-    heart.style.transition = 'all 0.8s ease-out';
-    button.style.position = 'relative';
-    button.appendChild(heart);
-
-    setTimeout(() => {
-      heart.style.transform = 'translate(-50%, -40px) scale(1.4)';
-      heart.style.opacity = '0';
-    }, 20);
-
-    setTimeout(() => heart.remove(), 850);
-  }
-
-  /* --------------------------------------------------------------------------
-     8. CONFETTI PARTICLE SYSTEM
+     7. CONFETTI PARTICLE SYSTEM
      -------------------------------------------------------------------------- */
   const canvas = document.getElementById('confettiCanvas');
   const ctx = canvas.getContext('2d');

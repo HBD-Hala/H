@@ -1180,243 +1180,8 @@ body {
 }
 
 /* ==========================================================================
-   SECTION 5: BLANK GREETING CARDS (UNDER REEL)
+   FOOTER
    ========================================================================== */
-.wishes-section {
-  width: 100%;
-  max-width: 960px;
-  padding: 50px 20px 20px;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.wishes-header {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.wishes-pill {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: var(--accent-pink);
-  text-transform: uppercase;
-}
-
-.wishes-title {
-  font-family: var(--font-serif);
-  font-size: clamp(26px, 5vw, 40px);
-  color: var(--accent-soft);
-  margin-top: 6px;
-}
-
-.wishes-subtitle {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
-.wishes-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.wish-card {
-  border-radius: 24px;
-  padding: 24px 22px;
-  position: relative;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 220px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.wish-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
-}
-
-/* Color Themes for Cards */
-.wish-card.theme-cream {
-  background: #fdfaf4;
-  color: #4a3427;
-  border: 1.5px solid #ecdcc9;
-}
-
-.wish-card.theme-rose {
-  background: #fdf1f3;
-  color: #5a2531;
-  border: 1.5px solid #f3cfd6;
-}
-
-.wish-card.theme-pink {
-  background: #fff4f6;
-  color: #5c2c38;
-  border: 1.5px solid #fad2db;
-}
-
-.wish-card.theme-mint {
-  background: #f2faf7;
-  color: #27473d;
-  border: 1.5px solid #d4eee4;
-}
-
-.wish-card.theme-lavender {
-  background: #f7f4fb;
-  color: #3b2c4e;
-  border: 1.5px solid #e2d8ef;
-}
-
-.wish-card.theme-amber {
-  background: #fff9f0;
-  color: #4e381b;
-  border: 1.5px solid #fae8cc;
-}
-
-/* Card Decorative Features */
-.washi-tape {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-  width: 90px;
-  height: 24px;
-  background: rgba(218, 130, 146, 0.55);
-  backdrop-filter: blur(4px);
-  border-left: 2px dashed rgba(255, 255, 255, 0.6);
-  border-right: 2px dashed rgba(255, 255, 255, 0.6);
-}
-
-.paper-pin {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffd700, #b8860b);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.ticket-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.ticket-notch {
-  position: absolute;
-  top: 50%;
-  width: 16px;
-  height: 32px;
-  background: #140102; /* Blends with page background */
-  transform: translateY(-50%);
-}
-.ticket-notch.left { left: 0; border-radius: 0 16px 16px 0; }
-.ticket-notch.right { right: 0; border-radius: 16px 0 0 16px; }
-
-.ticket-tag {
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  background: rgba(218, 130, 146, 0.2);
-  padding: 3px 8px;
-  border-radius: 6px;
-}
-
-.wish-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.wish-stars {
-  color: #e58e26;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-.wish-stamp-icon {
-  font-size: 18px;
-  opacity: 0.65;
-}
-
-/* Blank Note Lines (User requested empty cards) */
-.wish-content-blank {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
-  flex-grow: 1;
-}
-
-.blank-line {
-  height: 2px;
-  background: currentColor;
-  opacity: 0.16;
-  border-radius: 2px;
-}
-
-.blank-line.l-long { width: 100%; }
-.blank-line.l-med { width: 75%; }
-.blank-line.l-short { width: 50%; }
-
-.wish-card-bottom {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.cheer-btn {
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid currentColor;
-  color: inherit;
-  opacity: 0.85;
-  border-radius: 99px;
-  padding: 6px 14px;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cheer-btn:hover {
-  background: #e11d48;
-  border-color: #e11d48;
-  color: #ffffff;
-  opacity: 1;
-  transform: scale(1.06);
-}
-
-.cheer-btn.cheered {
-  background: #e11d48;
-  border-color: #e11d48;
-  color: #ffffff;
-  opacity: 1;
-}
-
-.cheer-btn.cheered .heart-icon {
-  animation: heartBump 0.4s ease;
-}
-
-@keyframes heartBump {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.4); }
-  100% { transform: scale(1); }
-}
-
-/* Footer */
 .site-footer {
   margin-top: 70px;
   text-align: center;
@@ -1474,8 +1239,8 @@ body {
   position: relative;
   z-index: 2;
   width: 95%;
-  max-width: 600px;
-  max-height: 90vh;
+  max-width: 920px;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1543,18 +1308,23 @@ body {
 
 .lightbox-img-container {
   max-height: 80vh;
+  max-width: 100%;
   border-radius: 18px;
   overflow: auto;
   border: 2px solid var(--border-gold);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
   background: #080001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lightbox-img {
   display: block;
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   max-height: 78vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
 }
 
