@@ -1,1 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy Birthday Hala ♡</title>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Quicksand:wght@500;600;700&family=Rye&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==============================================
+       STAGE 1: BEAR PIN LOCK SCREEN
+       ============================================== -->
+  <section class="pin-stage" id="pinStage">
+    <div class="radar" id="radar" aria-hidden="true">
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+
+    <div class="pin-card-wrapper" id="pinCardWrapper">
+      <div class="card pin-card" id="card">
+        <div class="glare" aria-hidden="true"></div>
+
+        <!-- Interactive Bear SVG from reference -->
+        <div class="bear-wrap" id="bearWrap" aria-hidden="true">
+          <svg id="bear" viewBox="0 0 200 180" width="160" height="144">
+            <defs>
+              <radialGradient id="fur" cx="35%" cy="28%" r="75%">
+                <stop offset="0%" stop-color="#e7bd84" />
+                <stop offset="55%" stop-color="#cb9760" />
+                <stop offset="100%" stop-color="#9c6b3e" />
+              </radialGradient>
+              <radialGradient id="fur-light" cx="40%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#fbe9cf" />
+                <stop offset="100%" stop-color="#f0d3a3" />
+              </radialGradient>
+            </defs>
+
+            <circle class="ear" cx="50" cy="46" r="26" />
+            <circle class="ear-inner" cx="50" cy="48" r="14" />
+            <circle class="ear" cx="150" cy="46" r="26" />
+            <circle class="ear-inner" cx="150" cy="48" r="14" />
+
+            <circle class="head" cx="100" cy="104" r="74" />
+
+            <ellipse class="blush" cx="56" cy="124" rx="12" ry="7" />
+            <ellipse class="blush" cx="144" cy="124" rx="12" ry="7" />
+
+            <ellipse class="snout" cx="100" cy="128" rx="36" ry="27" />
+            <ellipse class="nose" cx="100" cy="114" rx="11" ry="7.5" />
+            <path class="mouth" id="mouth" d="M84,134 Q100,146 116,134" />
+
+            <g class="eyes" id="eyes">
+              <g class="eye">
+                <circle class="sclera" cx="72" cy="92" r="14" />
+                <circle class="pupil" id="pupilL" cx="72" cy="92" r="6.5" />
+              </g>
+              <g class="eye">
+                <circle class="sclera" cx="128" cy="92" r="14" />
+                <circle class="pupil" id="pupilR" cx="128" cy="92" r="6.5" />
+              </g>
+            </g>
+
+            <g class="paw" id="pawL">
+              <ellipse class="palm" cx="0" cy="0" rx="24" ry="20" />
+              <circle class="finger" cx="-13" cy="-15" r="7.5" />
+              <circle class="finger" cx="0" cy="-19" r="7.5" />
+              <circle class="finger" cx="13" cy="-15" r="7.5" />
+            </g>
+            <g class="paw" id="pawR">
+              <ellipse class="palm" cx="0" cy="0" rx="24" ry="20" />
+              <circle class="finger" cx="-13" cy="-15" r="7.5" />
+              <circle class="finger" cx="0" cy="-19" r="7.5" />
+              <circle class="finger" cx="13" cy="-15" r="7.5" />
+            </g>
+          </svg>
+
+          <div class="sparkles" id="sparkles" aria-hidden="true">
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+          </div>
+        </div>
+
+        <h1 class="pin-title" id="pinTitle">Enter Secret PIN</h1>
+        <p class="pin-subtitle" id="pinSubtitle">Please enter the 4-digit code ♡</p>
+
+        <div class="pin-input-group" id="pinGroup">
+          <input type="password" maxlength="1" class="pin-digit" pattern="[0-9]*" inputmode="numeric" autofocus autocomplete="off" aria-label="PIN Digit 1">
+          <input type="password" maxlength="1" class="pin-digit" pattern="[0-9]*" inputmode="numeric" autocomplete="off" aria-label="PIN Digit 2">
+          <input type="password" maxlength="1" class="pin-digit" pattern="[0-9]*" inputmode="numeric" autocomplete="off" aria-label="PIN Digit 3">
+          <input type="password" maxlength="1" class="pin-digit" pattern="[0-9]*" inputmode="numeric" autocomplete="off" aria-label="PIN Digit 4">
+        </div>
+
+        <button type="button" class="pin-btn" id="pinUnlockBtn" onclick="verifyPin()">
+          <span>UNLOCK</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p class="pin-error" id="pinError" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       STAGE 2: CAPYBARA BIRTHDAY CALENDAR SCREEN
+       ============================================== -->
+  <section class="calendar-stage" id="calendarStage">
+    <div class="calendar-overlay">
+      <div class="calendar-card" id="calendarCard">
+        
+        <!-- Bunting Garland -->
+        <div class="bunting-garland" aria-hidden="true">
+          <span class="flag f1"></span>
+          <span class="flag f2"></span>
+          <span class="flag f3"></span>
+          <span class="flag f4"></span>
+          <span class="flag f5"></span>
+          <span class="flag f6"></span>
+          <span class="flag f7"></span>
+        </div>
+
+        <!-- Capybara Illustration Header (from Image 3) -->
+        <div class="capybara-hero">
+          <div class="capybara-badge">
+            <img src="assets/capybara-header.jpg" alt="Cute Capybara with Birthday Hat and Cake" class="capybara-img">
+          </div>
+        </div>
+
+        <!-- Calendar Body Container -->
+        <div class="cal-paper">
+          <div class="cal-month-pill">
+            <span>November 2026</span>
+          </div>
+
+          <div class="cal-weekdays">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+
+          <!-- November 2026 Grid (Starts on Sunday Nov 1) -->
+          <div class="cal-grid">
+            <!-- Week 1 -->
+            <div class="cal-day">1</div>
+            <div class="cal-day">2</div>
+            <div class="cal-day">3</div>
+            <div class="cal-day">4</div>
+            <div class="cal-day">5</div>
+            <div class="cal-day">6</div>
+            <div class="cal-day">7</div>
+
+            <!-- Week 2 -->
+            <div class="cal-day">8</div>
+            <div class="cal-day">9</div>
+            <div class="cal-day">10</div>
+            <div class="cal-day">11</div>
+            <div class="cal-day">12</div>
+            <div class="cal-day">13</div>
+            <div class="cal-day">14</div>
+
+            <!-- Week 3 -->
+            <div class="cal-day">15</div>
+            <!-- DAY 16: Special Birthday Date with Heart -->
+            <div class="cal-day bday-special" id="bdayDay16">
+              <span class="day-num">16</span>
+              <div class="heart-marker" aria-label="Birthday!">
+                <svg viewBox="0 0 32 32">
+                  <path d="M16,28.5 C16,28.5 3,20.5 3,11.5 C3,6.5 7,2.5 12,2.5 C14.5,2.5 15.5,3.8 16,4.5 C16.5,3.8 17.5,2.5 20,2.5 C25,2.5 29,6.5 29,11.5 C29,20.5 16,28.5 16,28.5 Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="cal-day">17</div>
+            <div class="cal-day">18</div>
+            <div class="cal-day">19</div>
+            <div class="cal-day">20</div>
+            <div class="cal-day">21</div>
+
+            <!-- Week 4 -->
+            <div class="cal-day">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day">24</div>
+            <div class="cal-day">25</div>
+            <div class="cal-day">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day">28</div>
+
+            <!-- Week 5 -->
+            <div class="cal-day">29</div>
+            <div class="cal-day">30</div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+          </div>
+        </div>
+
+        <!-- Continue Button -->
+        <button type="button" class="cal-continue-btn" id="calContinueBtn" onclick="openMainSite()">
+          <span>Continue ♡</span>
+          <svg viewBox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       THEATER CURTAINS & REVEAL PARTICLES
+       ============================================== -->
+  <div class="curtain-stage" id="curtainStage" aria-hidden="true">
+    <div class="curtain curtain-left" id="curtainLeft">
+      <div class="curtain-folds"></div>
+      <div class="curtain-fringe"></div>
+    </div>
+    <div class="curtain curtain-right" id="curtainRight">
+      <div class="curtain-folds"></div>
+      <div class="curtain-fringe"></div>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- ==============================================
+       STAGE 3: MAIN BIRTHDAY WEBSITE
+       ============================================== -->
+  <main class="site-main" id="siteMain">
+
+    <!-- Glowing Fairy Lights Top String -->
+    <div class="fairy-lights-string" aria-hidden="true">
+      <span class="bulb b1"></span><span class="bulb b2"></span><span class="bulb b3"></span>
+      <span class="bulb b4"></span><span class="bulb b5"></span><span class="bulb b6"></span>
+      <span class="bulb b7"></span><span class="bulb b8"></span><span class="bulb b9"></span>
+      <span class="bulb b10"></span><span class="bulb b11"></span><span class="bulb b12"></span>
+    </div>
+
+    <!-- Section 1: Birthday Header & Room GIF (Image 2) -->
+    <header class="hero-header">
+      <div class="marquee-badge">★ SPECIAL CELEBRATION ★</div>
+      <h1 class="main-title">
+        <span class="title-sub">HAPPY BIRTHDAY</span>
+        <span class="title-name">HALA</span>
+      </h1>
+      <div class="title-hearts">♡ ✧ ♡</div>
+    </header>
+
+    <!-- GIF Container (Image 2 - Animated Birthday Room) -->
+    <section class="featured-media-section">
+      <div class="media-card glow-card">
+        <div class="media-frame">
+          <img src="assets/hbd-hala.gif" alt="Happy Birthday Hala Pixel Art Room" class="hero-gif">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Fruit Cats Artwork (Image 4) -->
+    <section class="artwork-section" id="artworkSection">
+      <div class="artwork-card glow-card">
+        <div class="artwork-wrapper">
+          <img src="assets/fruits-cats.jpg" alt="Cats in Berries Happy Birthday Drawing" class="artwork-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Sketch Drawing with Roaa's Signature (Image 5) -->
+    <section class="sketch-reveal-section scroll-reveal" id="sketchSection">
+      <div class="sketch-card glow-card">
+        <div class="sketch-wrapper">
+          <img src="assets/roaa-sketch.jpg" alt="Happy Birthday Sketch" class="sketch-img">
+          
+          <!-- Signature in Bottom Corner: Roaa's Gift -->
+          <div class="roaa-signature">
+            <span class="sig-script">Roaa's Gift ♡</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Rolling Reel Gallery (Images from Local Send New folder) -->
+    <section class="reel-scroll-section" id="reelScrollSection">
+      <div class="reel-sticky-pin">
+        
+        <div class="reel-header-text">
+          <span class="reel-tag">MEMORIES & MOMENTS</span>
+          <h2 class="reel-title">The Rotating Wheel</h2>
+          <p class="reel-hint">Scroll down to roll through the pictures • Click any picture to enlarge</p>
+        </div>
+
+        <div class="reel-viewport-container">
+          <!-- Rotating Brass/Vinyl Projector Spool -->
+          <div class="spool-wrapper">
+            <div class="spool-disc" id="spoolDisc">
+              <div class="spool-spoke s1"></div>
+              <div class="spool-spoke s2"></div>
+              <div class="spool-spoke s3"></div>
+              <div class="spool-spoke s4"></div>
+              <div class="spool-center-hub">
+                <span class="hub-label">Hala</span>
+                <div class="hub-hole"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Horizontal Strip Viewport -->
+          <div class="reel-viewport" id="reelViewport">
+            <div class="reel-sprocket top"></div>
+
+            <div class="reel-track" id="reelTrack">
+              <!-- Frame 1 -->
+              <div class="reel-card" onclick="openLightbox(0)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">01</span>
+                  <img src="assets/reel/01.jpg" alt="Memory 01" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 2 -->
+              <div class="reel-card" onclick="openLightbox(1)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">02</span>
+                  <img src="assets/reel/02.jpg" alt="Memory 02" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 3 -->
+              <div class="reel-card" onclick="openLightbox(2)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">03</span>
+                  <img src="assets/reel/03.jpg" alt="Memory 03" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 4 -->
+              <div class="reel-card" onclick="openLightbox(3)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">04</span>
+                  <img src="assets/reel/04.jpg" alt="Memory 04" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 5 -->
+              <div class="reel-card" onclick="openLightbox(4)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">05</span>
+                  <img src="assets/reel/05.jpg" alt="Memory 05" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 6 -->
+              <div class="reel-card" onclick="openLightbox(5)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">06</span>
+                  <img src="assets/reel/06.jpg" alt="Memory 06" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 7 -->
+              <div class="reel-card" onclick="openLightbox(6)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">07</span>
+                  <img src="assets/reel/07.jpg" alt="Memory 07" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frame 8 -->
+              <div class="reel-card" onclick="openLightbox(7)">
+                <div class="reel-card-inner">
+                  <span class="card-num-tag">08</span>
+                  <img src="assets/reel/08.jpg" alt="Memory 08" class="reel-thumb" loading="lazy">
+                  <div class="card-glass-hover">
+                    <span class="zoom-icon">🔍 View Full</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reel-sprocket bottom"></div>
+          </div>
+        </div>
+
+        <!-- Reel Drag / Click Indicators -->
+        <div class="reel-nav-controls">
+          <button type="button" class="reel-arrow-btn" onclick="slideReel(-1)" title="Previous">‹</button>
+          <span class="reel-page-dots" id="reelDots"></span>
+          <button type="button" class="reel-arrow-btn" onclick="slideReel(1)" title="Next">›</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Blank Greeting Cards (as requested by user) -->
+    <section class="wishes-section">
+      <div class="wishes-header">
+        <span class="wishes-pill">SPECIAL WISHES</span>
+        <h2 class="wishes-title">Birthday Cards & Love Notes</h2>
+        <p class="wishes-subtitle">A collection of sweet greetings made just for you</p>
+      </div>
+
+      <div class="wishes-grid">
+        <!-- Card 1: Warm Cream Note Card -->
+        <div class="wish-card theme-cream">
+          <div class="wish-card-top">
+            <span class="wish-stars">★★★★★</span>
+            <span class="wish-stamp-icon">♡</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-short"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Soft Rose Ticket Card -->
+        <div class="wish-card theme-rose ticket-card">
+          <div class="ticket-notch left"></div>
+          <div class="ticket-notch right"></div>
+          <div class="wish-card-top">
+            <span class="ticket-tag">ADMIT LOVE</span>
+            <span class="wish-stars">★★★★★</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-short"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Pastel Note with Washi Tape -->
+        <div class="wish-card theme-pink tape-card">
+          <div class="washi-tape" aria-hidden="true"></div>
+          <div class="wish-card-top">
+            <span class="wish-stars">★★★★★</span>
+            <span class="wish-stamp-icon">✿</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-short"></div>
+            <div class="blank-line l-med"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Mint Paper Style Card -->
+        <div class="wish-card theme-mint">
+          <div class="paper-pin" aria-hidden="true"></div>
+          <div class="wish-card-top">
+            <span class="wish-stars">★★★★★</span>
+            <span class="wish-stamp-icon">୨୧</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-short"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-long"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 5: Soft Lavender Card -->
+        <div class="wish-card theme-lavender">
+          <div class="wish-card-top">
+            <span class="wish-stars">★★★★★</span>
+            <span class="wish-stamp-icon">✧</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-short"></div>
+            <div class="blank-line l-med"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 6: Warm Amber Card -->
+        <div class="wish-card theme-amber">
+          <div class="wish-card-top">
+            <span class="wish-stars">★★★★★</span>
+            <span class="wish-stamp-icon">✦</span>
+          </div>
+          <div class="wish-content-blank">
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-med"></div>
+            <div class="blank-line l-long"></div>
+            <div class="blank-line l-short"></div>
+          </div>
+          <div class="wish-card-bottom">
+            <button type="button" class="cheer-btn" onclick="toggleCheer(this)">
+              <span class="heart-icon">♥</span>
+              <span class="cheer-label">Cheer</span>
+              <span class="cheer-count">1</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-heart">♥</div>
+      <p class="footer-text">Happy Birthday, Hala</p>
+      <p class="footer-sub">Wishing you endless joy, love, and sweet moments</p>
+    </footer>
+
+  </main>
+
+  <!-- ==============================================
+       FULL PHOTO LIGHTBOX MODAL
+       ============================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo Preview">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-dialog">
+      <button type="button" class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close modal">✕</button>
+      
+      <div class="lightbox-body">
+        <button type="button" class="lightbox-arrow prev" onclick="navigateLightbox(-1)" aria-label="Previous photo">‹</button>
+        <div class="lightbox-img-container">
+          <img src="" alt="Full view" id="lightboxImg" class="lightbox-img">
+        </div>
+        <button type="button" class="lightbox-arrow next" onclick="navigateLightbox(1)" aria-label="Next photo">›</button>
+      </div>
+
+      <div class="lightbox-caption">
+        <span id="lightboxIndex">1 / 8</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       AUDIO PLAYER & FLOATING ACTION BUTTON (FAB)
+       ============================================== -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://www.adorely.app/music/library/happy-birthday-song.mp3" type="audio/mp3">
+  </audio>
+
+  <button class="audio-fab" id="audioFab" title="Toggle Birthday Music" onclick="toggleMusic()" aria-label="Toggle Music">
+    <div class="music-wave wave-1"></div>
+    <div class="music-wave wave-2"></div>
+    <div class="music-wave wave-3"></div>
+    <svg id="speakerIcon" viewBox="0 0 24 24">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
