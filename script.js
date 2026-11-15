@@ -404,14 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
      6. FULL PHOTO LIGHTBOX MODAL
      -------------------------------------------------------------------------- */
   const reelImages = [
-    'assets/reel/01.jpg',
-    'assets/reel/02.jpg',
-    'assets/reel/03.jpg',
-    'assets/reel/04.jpg',
-    'assets/reel/05.jpg',
-    'assets/reel/06.jpg',
-    'assets/reel/07.jpg',
-    'assets/reel/08.jpg'
+    'assets/reel_v2/01.jpg',
+    'assets/reel_v2/02.jpg',
+    'assets/reel_v2/03.jpg',
+    'assets/reel_v2/04.jpg',
+    'assets/reel_v2/05.jpg',
+    'assets/reel_v2/06.jpg',
+    'assets/reel_v2/07.jpg',
+    'assets/reel_v2/08.jpg'
   ];
 
   let currentLightboxIdx = 0;
